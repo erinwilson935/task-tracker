@@ -25,12 +25,12 @@ class Task:
 
         self.priority = Task.set_priority(self, days_to_complete)
 
-        Task.tasks.append(self) 
-            
+        Task.tasks.append(self)
+
     @classmethod
     def load_tasks_file(cls):
         try:
-            with open("tasks.csv", mode="w+", newline="") as file:
+            with open("tasks.csv", mode="r", newline="") as file:
                 reader = csv.reader(file)
                 next(reader, None)  # skip over the header row
 
@@ -47,8 +47,19 @@ class Task:
                     pass
 
         except FileNotFoundError:
-
             print("Previous task list not found. Creating new task list.")
+            with open("tasks.csv", mode="w", newline="") as file:
+                writer = csv.writer(file)
+                writer.writerow(
+                    [
+                        "title",
+                        "priority",
+                        "date_created",
+                        "date_due",
+                        "days_to_complete",
+                    ]
+                )
+            print("New task list file created.")
 
     @classmethod
     def save_task_file(cls):
@@ -106,7 +117,7 @@ class Task:
                     print(f"\t{index}. {task.title}")
 
             elif key == "priority_1":
-                Task.filter_tasks(1) 
+                Task.filter_tasks(1)
 
             elif key == "priority_2":
                 Task.filter_tasks(2)
