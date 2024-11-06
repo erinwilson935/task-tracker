@@ -20,7 +20,7 @@ Tasks can be visually filtered by priority grouping when displaying tasks.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/michaelddeming/Task-Tracker.git
+    git clone https://github.com/michaelddeming/task-tracker.git
     ```
 
 2. Navigate to the project directory:
