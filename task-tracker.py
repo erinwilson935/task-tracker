@@ -139,8 +139,8 @@ def edit_task_property():
                 continue
             break
         except ValueError:
-            print("Please enter the task rank/number.")
             clear_terminal()
+            print("Please enter the task rank/number.")
             continue
 
     task_to_edit = Task.tasks[task_to_edit_index]
@@ -155,25 +155,30 @@ def edit_task_property():
             f"\n[3]: Main Menu\n"
         )
         if user_input == "1":
+            clear_terminal()
             cowsay_message(message="Update Task Title!")
             new_title = input("New Task Title: ").title().strip()
             task_to_edit.title = new_title
             continue
         elif user_input == "2":
             while True:
+                clear_terminal()
                 cowsay_message(message="Update Task's Days to Complete!")
                 try:
                     days_to_complete_edit = int(input("New Days to Complete Task: "))
                     Task.update_task(task_to_edit, days_to_complete_edit)
                     break
                 except ValueError:
+                    clear_terminal()
                     print(f"Invalid Input, Please Enter a Number")
                     continue
 
         elif user_input == "3":
             Task.sort_tasks()
+            clear_terminal()
             run_sys()
         else:
+            clear_terminal()
             print("Invalid Input")
             continue
 
@@ -251,20 +256,20 @@ def filter_tasks():
         if user_input == "1":
             cowsay_message(message="Prioirty 1 Tasks!")
             Task.display_tasks(key="priority_1")
-            user_input = input("\nPress 'q' to quit filter view. ")
-            if user_input == "q":
+            user_input = input("\nEnter any key to quit filter view. ")
+            if user_input or user_input == "":
                 run_sys()
         elif user_input == "2":
             cowsay_message(message="Prioirty 2 Tasks!")
             Task.display_tasks(key="priority_2")
-            user_input = input("\nPress 'q' to quit filter view. ")
-            if user_input == "q":
+            user_input = input("\nEnter any key to quit filter view. ")
+            if user_input or user_input == "":
                 run_sys()
         elif user_input == "3":
             cowsay_message(message="Prioirty 3 Tasks!")
             Task.display_tasks(key="priority_3")
-            user_input = input("\nPress 'q' to quit filter view. ")
-            if user_input == "q":
+            user_input = input("\nEnter any key to quit filter view. ")
+            if user_input or user_input == "":
                 run_sys()
         elif user_input == "4":
             run_sys()
