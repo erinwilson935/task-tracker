@@ -4,3 +4,7 @@ __pycache__/
 
 # Ignore virtual environment directory
 venv/
+
+# Ignore CSV files
+*.csv
+
