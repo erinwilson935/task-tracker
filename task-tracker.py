@@ -118,8 +118,9 @@ def edit_task_list():
         run_sys()
     else:
         cowsay_message(message="No Tasks To Edit!")
-        user_input = input("Press Enter")
-        if user_input:
+        user_input = input("\nPress any key to exit.")
+        if user_input or user_input == "":
+            clear_terminal()
             run_sys
 
 
