@@ -1,15 +1,14 @@
 # Task Tracker by Michael Deming
 
-A basic but intuititve Task Tracker application. 
+A basic but intuitive Task Tracker application.
 
-Tasks are given a *days_to_complete* (int) when created. This, in combination with 
-the *date_created* (date via datetime), sets a *date_due* (date via datetime). Tasks are sorted/ranked by their *days_to_complete* in ascending order. Future updates will utilize *date_due*. 
+Tasks are given a *days_to_complete* (int) when created. This, in combination with the *date_created* (date via `datetime`), sets a *date_due* (date via `datetime`). Tasks are sorted and ranked by their *days_to_complete* in ascending order. Future updates will utilize *date_due*.
 
-Tasks priorty is set by *days_to_complete* automatically:
+Tasks priority is set by *days_to_complete* automatically:
 
-- 1 -> 3 Days to Complete == Priority 1
-- 4 -> 6 Days to Complete == Priority 2
-- 7+ Days to Complete == Priority 3
+- **Priority 1**: 1 - 3 Days to Complete
+- **Priority 2**: 4 - 6 Days to Complete
+- **Priority 3**: 7+ Days to Complete
 
 Tasks can be visually filtered by priority grouping when displaying tasks.
 
@@ -19,14 +18,14 @@ Tasks can be visually filtered by priority grouping when displaying tasks.
 
 ## Installation
 
-1. Clone the repo:
+1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/task-tracker.git
+    git clone https://github.com/michaelddeming/Task-Tracker.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd task-tracker
+    cd Task-Tracker
     ```
 
 3. Install dependencies:
@@ -36,13 +35,11 @@ Tasks can be visually filtered by priority grouping when displaying tasks.
 
 ## Usage
 
-1. Run the app:
+1. Run the application:
     ```bash
     python task-tracker.py
     ```
 
 ## Acknowledgements
 
-- **Youtube Stream Chat & Discord**: Thanks to those who provided input and assistance.
-
-
+- **YouTube Stream Chat & Discord**: Thanks to those who provided input and assistance.
