@@ -4,18 +4,23 @@ from globals import *
 import cowsay
 import os
 from cowsay_animals import cowsay_animals
+import datetime
 
 user_animal = "cow"
+expired_tasks = []
 
 
 def main():
     """Main funtion call to launch the system or close"""
     while True:
         clear_terminal()
-        user_input = input(f"Would you like to open {SYS_NAME}?\n[1]: Yes \n[2]: No\n")
+        user_input = input(f"Would you like to open {SYS_NAME}?\n[1]: Yes\n[2]: No\n")
 
         if user_input == "1":
             Task.load_tasks_file()
+            update_days_to_complete()
+            check_expired_tasks()
+            display_expired_tasks()
             run_sys()
         elif user_input == "2":
             sys.exit()
@@ -307,6 +312,42 @@ def change_animal():
         except ValueError:
             clear_terminal()
             print("Invalid Input.\nPlease enter a number.")
+            continue
+
+
+def update_days_to_complete():
+    """Logs the current date. Edits the days to complete attribute for each
+    task according to the current date."""
+    date_current = datetime.date.today()
+    for task in Task.tasks:
+        task.days_to_complete = task.date_due - date_current
+        # convert timedelta object "days" back into int value
+        task.days_to_complete = task.days_to_complete.days
+
+
+def check_expired_tasks():
+    """Checks tasks days to complete, if negative (expired/overdue) the task is
+    removed from the list and appended to an expired list."""
+    for task in Task.tasks:
+        if task.days_to_complete < 0:
+            Task.tasks.remove(task)
+            global expired_tasks
+            expired_tasks.append(task)
+
+
+def display_expired_tasks():
+    global expired_tasks
+    if expired_tasks:
+        for index, task in enumerate(expired_tasks):
+            print(f"{index+1}. {task.title} | Expired: {task.date_due}")
+    else:
+        print("No expired tasks")
+    while True:
+        user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
+
+        if user_input == "q":
+            break
+        else:
             continue
 
 

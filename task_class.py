@@ -1,23 +1,32 @@
 """Create a class called "Task" that takes when initialized has a title, priority, and a due_date attributes"""
 
-import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
+
 import csv
-from pathlib import Path
 
 
 class Task:
 
     tasks = []
 
-    def __init__(self, title="task_title", days_to_complete=int):
+    def __init__(self, title="task_title", days_to_complete=0, date_created=None):
 
         self.title = title
 
         self.days_to_complete = days_to_complete
 
         # creates instance variable for the current date task was created.
-        self.date_created = datetime.date.today()
+        if date_created:
+            try:
+                self.date_created = datetime.strptime(date_created, "%Y-%m-%d").date()
+            except ValueError:
+                print(
+                    "Pre-exisiting 'Date Created' in incorrect format. Expected: YYYY-MM-DD."
+                )
+                #fallback set date_created to current date
+                self.date_created = datetime.today().date()
+        else:
+            self.date_created = datetime.today().date()
 
         # creates a "task.due_date" instance variable by summing the date the task was created
         # and a time delta conversion for the int number of days to complete the task.
@@ -39,8 +48,9 @@ class Task:
                     rows_found = True  # switch flag to true, rows found
                     try:
                         task_title = row[0]
+                        date_created = row[2]
                         days_to_complete = int(row[4])
-                        cls(task_title, days_to_complete)
+                        cls(task_title, days_to_complete, date_created)
                     except ValueError:
                         print("Invalid data encountered in row, skipping row.")
                 if not rows_found:
