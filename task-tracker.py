@@ -17,11 +17,15 @@ def main():
         user_input = input(f"Would you like to open {SYS_NAME}?\n[1]: Yes\n[2]: No\n")
 
         if user_input == "1":
-            Task.load_tasks_file()
-            update_days_to_complete()
-            check_expired_tasks()
-            display_expired_tasks()
-            run_sys()
+            Task.load_tasks_file() #load the pre-existing tasks 
+            update_days_to_complete() #update the days to complete according to current date prog run
+            
+            for task in Task.tasks: #update the priority according to the new days to complete
+                Task.set_priority(task, days_to_complete=task.days_to_complete) 
+            
+            check_expired_tasks() #check if any tasks are expired
+            display_expired_tasks() #display the expired tasks to the user
+            run_sys() #run system
         elif user_input == "2":
             sys.exit()
         else:

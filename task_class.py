@@ -153,6 +153,8 @@ class Task:
             self.priority = 2
         elif days_to_complete > 6:
             self.priority = 3
+        else:
+            self.priority = 0 # 0 priority, task is expired
         return self.priority
 
     def set_date_due(self, days_to_complete):
