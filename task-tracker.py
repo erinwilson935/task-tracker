@@ -336,8 +336,11 @@ def check_expired_tasks():
 
 
 def display_expired_tasks():
+    clear_terminal()
     global expired_tasks
     if expired_tasks:
+        cowsay_message(message="These task(s) expired while you were away.")
+        print("\nExpired Tasks:\n")  # header
         for index, task in enumerate(expired_tasks):
             print(f"{index+1}. {task.title} | Expired: {task.date_due}")
     else:
@@ -348,7 +351,7 @@ def display_expired_tasks():
         if user_input == "q":
             break
         else:
-            continue
+            continue   
 
 
 def cowsay_message(animal=None, message="moo"):
