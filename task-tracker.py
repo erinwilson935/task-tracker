@@ -17,15 +17,19 @@ def main():
         user_input = input(f"Would you like to open {SYS_NAME}?\n[1]: Yes\n[2]: No\n")
 
         if user_input == "1":
-            Task.load_tasks_file() #load the pre-existing tasks 
-            update_days_to_complete() #update the days to complete according to current date prog run
-            
-            for task in Task.tasks: #update the priority according to the new days to complete
-                Task.set_priority(task, days_to_complete=task.days_to_complete) 
-            
-            check_expired_tasks() #check if any tasks are expired
-            display_expired_tasks() #display the expired tasks to the user
-            run_sys() #run system
+            Task.load_tasks_file()  # load the pre-existing tasks
+            update_days_to_complete()  # update the days to complete according to current date prog run
+
+            for (
+                task
+            ) in (
+                Task.tasks
+            ):  # update the priority according to the new days to complete
+                Task.set_priority(task, days_to_complete=task.days_to_complete)
+
+            check_expired_tasks()  # check if any tasks are expired
+            display_expired_tasks()  # display the expired tasks to the user
+            run_sys()  # run system
         elif user_input == "2":
             sys.exit()
         else:
@@ -35,8 +39,8 @@ def main():
 
 def run_sys():
     """"""
-    clear_terminal()
     while True:
+        clear_terminal()
         cowsay_message(message=INTRODUCTION)
         # cowsay.cow(INTRODUCTION)
         user_input = input(
@@ -65,7 +69,6 @@ def run_sys():
 
         else:
             print("Invalid Input")
-            clear_terminal()
             continue
 
 
@@ -251,8 +254,8 @@ def display_tasks():
 
 
 def filter_tasks():
-    clear_terminal()
     while True:
+        clear_terminal()
 
         cowsay_message(message="Select a Filter Parameter!")
         user_input = input(
@@ -263,23 +266,37 @@ def filter_tasks():
             "\n[4]: Main Menu\n"
         )
         if user_input == "1":
+            clear_terminal()
             cowsay_message(message="Prioirty 1 Tasks!")
             Task.display_tasks(key="priority_1")
-            user_input = input("\nEnter any key to quit filter view. ")
-            if user_input or user_input == "":
-                run_sys()
+            user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
+            while True:
+                user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
+                if user_input == "q":
+                    break
+                else:
+                    continue
         elif user_input == "2":
+            clear_terminal()
             cowsay_message(message="Prioirty 2 Tasks!")
             Task.display_tasks(key="priority_2")
-            user_input = input("\nEnter any key to quit filter view. ")
-            if user_input or user_input == "":
-                run_sys()
+            while True:
+                user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
+                if user_input == "q":
+                    break
+                else:
+                    continue
         elif user_input == "3":
+            clear_terminal()
             cowsay_message(message="Prioirty 3 Tasks!")
             Task.display_tasks(key="priority_3")
-            user_input = input("\nEnter any key to quit filter view. ")
-            if user_input or user_input == "":
-                run_sys()
+            user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
+            while True:
+                user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
+                if user_input == "q":
+                    break
+                else:
+                    continue
         elif user_input == "4":
             run_sys()
         else:
@@ -355,7 +372,7 @@ def display_expired_tasks():
         if user_input == "q":
             break
         else:
-            continue   
+            continue
 
 
 def cowsay_message(animal=None, message="moo"):

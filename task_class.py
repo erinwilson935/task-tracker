@@ -23,7 +23,7 @@ class Task:
                 print(
                     "Pre-exisiting 'Date Created' in incorrect format. Expected: YYYY-MM-DD."
                 )
-                #fallback set date_created to current date
+                # fallback set date_created to current date
                 self.date_created = datetime.today().date()
         else:
             self.date_created = datetime.today().date()
@@ -124,7 +124,7 @@ class Task:
                 index = 0
                 for task in cls.tasks:
                     index += 1
-                    print(f"\t{index}. {task.title}")
+                    print(f"\t{index}. {task.title} | Due: {task.date_due}")
 
             elif key == "priority_1":
                 Task.filter_tasks(1)
@@ -154,7 +154,7 @@ class Task:
         elif days_to_complete > 6:
             self.priority = 3
         else:
-            self.priority = 0 # 0 priority, task is expired
+            self.priority = 0  # 0 priority, task is expired
         return self.priority
 
     def set_date_due(self, days_to_complete):
