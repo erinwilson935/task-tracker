@@ -269,7 +269,6 @@ def filter_tasks():
             clear_terminal()
             cowsay_message(message="Prioirty 1 Tasks!")
             Task.display_tasks(key="priority_1")
-            user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
             while True:
                 user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
                 if user_input == "q":
@@ -290,7 +289,6 @@ def filter_tasks():
             clear_terminal()
             cowsay_message(message="Prioirty 3 Tasks!")
             Task.display_tasks(key="priority_3")
-            user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
             while True:
                 user_input = input("\nPress 'q' to quit Expired Tasks view.\n")
                 if user_input == "q":
