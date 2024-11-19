@@ -25,7 +25,7 @@ Tasks can be visually filtered by priority grouping when displaying tasks.
 
 2. Navigate to the project directory:
     ```bash
-    cd Task-Tracker
+    cd task-tracker
     ```
 
 3. Install dependencies:
