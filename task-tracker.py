@@ -347,7 +347,7 @@ def update_days_to_complete():
 def check_expired_tasks():
     """Checks tasks days to complete, if negative (expired/overdue) the task is
     removed from the list and appended to an expired list."""
-    for task in Task.tasks:
+    for task in Task.tasks[:]:
         if task.days_to_complete < 0:
             Task.tasks.remove(task)
             global expired_tasks
