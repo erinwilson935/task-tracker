@@ -147,11 +147,11 @@ class Task:
         cls.tasks.clear()
 
     def set_priority(self, days_to_complete):
-        if days_to_complete in range(1, 4):
+        if days_to_complete in range(0, 4):
             self.priority = 1
-        elif days_to_complete in range(4, 7):
+        elif days_to_complete in range(4, 8):
             self.priority = 2
-        elif days_to_complete > 6:
+        elif days_to_complete > 7:
             self.priority = 3
         else:
             self.priority = 0  # 0 priority, task is expired

@@ -6,9 +6,9 @@ Tasks are given a *days_to_complete* (int) when created. This, in combination wi
 
 Tasks priority is set by *days_to_complete* automatically:
 
-- **Priority 1**: 1 - 3 Days to Complete
-- **Priority 2**: 4 - 6 Days to Complete
-- **Priority 3**: 7+ Days to Complete
+- **Priority 1**: 0 - 3 Days to Complete
+- **Priority 2**: 4 - 7 Days to Complete
+- **Priority 3**: 8+ Days to Complete
 
 Tasks can be visually filtered by priority grouping when displaying tasks.
 
