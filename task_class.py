@@ -158,7 +158,7 @@ class Task:
         return self.priority
 
     def set_date_due(self, days_to_complete):
-        self.date_due = self.date_created + timedelta(days=days_to_complete)
+        self.date_due = datetime.today().date() + timedelta(days=days_to_complete)
         return self.date_due
 
     def update_task(self, new_days_to_complete):
