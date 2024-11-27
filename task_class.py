@@ -9,7 +9,7 @@ class Task:
 
     tasks = []
 
-    def __init__(self, title="task_title", days_to_complete=0, date_created=None):
+    def __init__(self, title="task_title", days_to_complete=0, date_created=None, date_due=None):
 
         self.title = title
 
@@ -30,7 +30,17 @@ class Task:
 
         # creates a "task.due_date" instance variable by summing the date the task was created
         # and a time delta conversion for the int number of days to complete the task.
-        self.date_due = Task.set_date_due(self, days_to_complete)
+        if date_due:
+            try:
+                self.date_due = datetime.strptime(date_due, "%Y-%m-%d").date()
+            except ValueError:
+                print(
+                    "Pre-exisiting 'Date Created' in incorrect format. Expected: YYYY-MM-DD."
+                )
+                # fallback set date_created to current date
+                self.date_due = datetime.today().date()
+        else:
+            self.date_due = Task.set_date_due(self, days_to_complete)
 
         self.priority = Task.set_priority(self, days_to_complete)
 
@@ -49,8 +59,9 @@ class Task:
                     try:
                         task_title = row[0]
                         date_created = row[2]
+                        date_due = row[3] 
                         days_to_complete = int(row[4])
-                        cls(task_title, days_to_complete, date_created)
+                        cls(task_title, days_to_complete, date_created, date_due)
                     except ValueError:
                         print("Invalid data encountered in row, skipping row.")
                 if not rows_found:
@@ -158,7 +169,7 @@ class Task:
         return self.priority
 
     def set_date_due(self, days_to_complete):
-        self.date_due = datetime.today().date() + timedelta(days=days_to_complete)
+        self.date_due = self.date_created + timedelta(days=days_to_complete)
         return self.date_due
 
     def update_task(self, new_days_to_complete):
